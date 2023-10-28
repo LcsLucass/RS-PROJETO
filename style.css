@@ -11,7 +11,7 @@
   --stroke-color:rgba(255, 255, 255, 0.5);
   --surface-color: rgba(255, 255, 255, 0.1);
   --surface-color-hover:rgba(255, 255, 255, 0.037);
-  --highlight-color: rgba(0, 0, 0, 0.1);
+  --highlight-color: rgba(158, 158, 158, 0.372);
   --switch-bg-url: url(./assets/moon-stars.svg);
   
 }
@@ -22,7 +22,7 @@
   --stroke-color: rgba(0, 0, 0,  0.5);
   --surface-color: rgba(0, 0, 0,  0.05);
   --surface-color-hover: rgba(5, 5, 5, 0.218);
-  --highlight-color: rgba(123, 120, 120, 0.2);
+  --highlight-color: rgba(54, 54, 54, 0.2);
   --switch-bg-url: url(./assets/Sun.svg);
   
 }
@@ -37,6 +37,7 @@ body {
 
   /*background: color image repeat position size*/
   background: var(--bg-url) no-repeat top center/cover;
+  height: 100vh;
 }
 
 /* "*" seletor universal, significa que ele vai aplicar isso para todos os elementos do body*/
@@ -115,13 +116,21 @@ body * {
   left: 0;
   z-index: 1;
   transform: translateY(-50%);
+
+  animation: slide-back 0.4s;
   
 }
 
 .light #switch button {
-
+  /*
   right: 0;
-  left: initial;
+  left: initial;*/
+  animation: slide-in 0.4s forwards;
+  /*forwards mantem a aplicaçao da animacao, no caso slide*/
+}
+
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
 }
 
 #switch span {
@@ -216,6 +225,33 @@ footer{
   font-size: 14px;
 }
 
+/*media queries*/
+@media (min-width: 700px) {
+  :root {
+    --bg-url: url(./assets/bg-desktop.jpg);
+  }
 
+  .light {
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+/*moificou a imagem e fundo baseada no dispositivo*/
+}
 
+/*animation*/
+@keyframes slide-in{
+  from{
+    left: 0;
+  }
+  to{
+    left: 50%;
+  }
+}
+@keyframes slide-back {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
+}
 
